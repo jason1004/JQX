@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>ÐÐ×ª»»</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css" />
+	<style>
+		textarea {
+			border: 1px bisque double;
+		    width: 100%;
+		    margin-top: 20px;
+		    height: auto;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row ">
+			<div class="col-md-5">
+				<textarea id="rawData" rows="30" >
+	
+				</textarea>
+			</div>
+
+
+
+			<div class="col-md-2" style="vertical-align: center; height: 100%;">
+				<button id="get" class="btn btn-primary" style="vertical-align: center; position: relative; top: 300px; left: 40%">×ª»»</button>
+			</div>
+
+			<div class="col-md-5">
+			    <textarea id="newData" rows="30" >
+	
+				</textarea>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.js"></script>
+<script>
+
+    $(function () {
+        $("#get").on("click",
+            function() {
+                var rawData = $("#rawData").val();
+                var rawDataArr = rawData.split("\n");
+                var arr = [];
+                $.each(rawDataArr,
+                    function(i, e) {
+                        var text = $.trim(e);
+                        text && arr.push(text);
+                    });
+                console.log(arr.length);
+                $("#newData").val(arr.join("','"));
+            });
+    })
+</script>
