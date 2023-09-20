@@ -21,8 +21,10 @@
 				<textarea id="rawData" rows="30" placeholder="一行一个"></textarea>
 			</div>
 			<div class="col-md-2" style="vertical-align: center; height: 100%;">
-				<button id="get" class="btn btn-primary" style="vertical-align: center; position: relative; top: 300px; left: 40%">转换</button><br/><br/>
-				<button id="get1" class="btn btn-primary" style="vertical-align: center; position: relative; top: 300px; left: 40%">转换(ID)</button>
+				<button id="get" class="btn btn-primary" style="vertical-align: center; position: relative; top: 300px; left: 40%">SQL IN</button><br/><br/>
+				<button id="get1" class="btn btn-primary" style="vertical-align: center; position: relative; top: 300px; left: 40%">逗号连接</button><br/><br/>
+                <button id="toList" class="btn btn-primary" style="vertical-align: center; position: relative; top: 300px; left: 40%">转换数组</button><br/><br/>
+                <button id="getReverse" class="btn btn-danger" style="vertical-align: center; position: relative; top: 300px; left: 40%">反向转换</button>
 			</div>
 			<div class="col-md-5">
 			    <textarea id="newData" rows="30" placeholder="结果"></textarea>
@@ -50,6 +52,8 @@
                 console.log(arr.length);
                 $("#newData").val(arr.join("','"));
             });
+
+    
 	    
 	 $("#get1").on("click",
             function() {
@@ -65,5 +69,25 @@
                 $("#newData").val(arr.join(","));
             });   
 	   
+    })
+
+    $("#toList").on("click",
+        function() {
+            var rawData = $("#rawData").val();
+            var rawDataArr = rawData.split("\n");
+            var arr = [];
+            $.each(rawDataArr,
+                function(i, e) {
+                    var text = $.trim(e);
+                    text && arr.push(text);
+                });
+            console.log(arr.length);
+            var str =arr.join('",\n"');
+            str && $("#newData").val('"'+str+'"');
+        });
+
+    $("#getReverse").on("click",function(){
+        var newData = $("#newData").val();
+        $("#rawData").val(newData.split(",").join("\n"));
     })
 </script>
